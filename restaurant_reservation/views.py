@@ -102,3 +102,18 @@ class UsersCreateView(LoginRequiredMixin, CreateView):
 
     def get_success_url(self):
         return reverse_lazy("restaurant_reservation:users-list")
+
+
+class UsersDetailView(DetailView):
+    model = CustomUser
+
+
+class UserUpdateView(LoginRequiredMixin, UpdateView):
+    model = CustomUser
+    form_class = CustomerUserUpdateForm
+    success_url = reverse_lazy("restaurant_reservation:users-list")
+
+
+class UserDeleteView(LoginRequiredMixin, DeleteView):
+    model = CustomUser
+    success_url = reverse_lazy("restaurant_reservation:users-list")
