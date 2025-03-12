@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>User List
+    <a href="{% url 'restaurant_reservation:table-create' %}" class="btn btn-primary link-to-page float-end">
+      Create
+    </a>
+    </h1>
+
+    {% if table_list %}
+    <table class="table">
+      <tr>
+        <th>Restaurant</th>
+        <th>Table number</th>
+        <th>Table capacity</th>
+        <th>Update</th>
+        <th>Delete</th>
+      </tr>
+    {% for table in table_list %}
+      <tr>
+        <td>{{ table.restaurant.name }}</td>
+        <td>{{ table.table_number }} </td>
+        <td>{{ table.capacity }}</td>
+        <td>
+          <a href="{% url 'restaurant_reservation:table-update' pk=table.id %}">
+            Update
+          </a>
+        </td>
+        <td>
+          <a href="{% url 'restaurant_reservation:table-delete' pk=table.id %}">
+            Delete
+          </a>
+        </td>
+      </tr>
+    {% endfor %}
+
+    </table>
+    {% else %}
+      <p>There are no tables in the service.</p>
+    {% endif %}
+{% endblock %}
