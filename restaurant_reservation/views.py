@@ -64,3 +64,28 @@ def my_reservations(request: HttpRequest, pk: int) -> HttpResponse:
     reservations = Reservation.objects.filter(guest_id=user)
     context = {"user": user, "reservations": reservations}
     return render(request, "restaurant_reservation/my_reservations.html", context=context)
+
+
+class ReservationCreateView(LoginRequiredMixin, CreateView):
+    model = Reservation
+    form_class = ReservationForm
+    template_name = "restaurant_reservation/reservation_form.html"
+
+    def get_success_url(self):
+        return reverse_lazy("restaurant_reservation:my-reservations", kwargs={'pk': self.request.user.pk})
+
+
+class ReservationUpdateView(LoginRequiredMixin, UpdateView):
+    model = Reservation
+    form_class = ReservationForm
+    template_name = "restaurant_reservation/reservation_form.html"
+
+    def get_success_url(self):
+        return reverse_lazy("restaurant_reservation:my-reservations", kwargs={'pk': self.request.user.pk})
+
+
+class ReservationDeleteView(LoginRequiredMixin, DeleteView):
+    model = Reservation
+
+    def get_success_url(self):
+        return reverse_lazy("restaurant_reservation:my-reservations", kwargs={'pk': self.request.user.pk})
