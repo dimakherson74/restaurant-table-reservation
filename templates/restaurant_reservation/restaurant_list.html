@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{#{% load crispy_forms_filters %}#}
 
 {% block content %}
   <h1>
@@ -7,6 +6,9 @@
     {% if user.is_superuser %}
       <a href="{% url 'restaurant_reservation:restaurant-create' %}" class="btn btn-primary link-to-page">
         Create
+      </a>
+      <a href="{% url 'restaurant_reservation:table-list' %}" class="btn btn-primary link-to-page float-end">
+        Tables
       </a>
     {% endif %}
   </h1>

@@ -40,17 +40,17 @@ def index(request):
     return render(request, "restaurant_reservation/index.html", context=context)
 
 
-class RestaurantListView(ListView):
+class RestaurantListView(LoginRequiredMixin, ListView):
     model = Restaurant
 
 
-class RestaurantCreateView(CreateView):
+class RestaurantCreateView(LoginRequiredMixin, CreateView):
     model = Restaurant
     fields = "__all__"
     success_url = reverse_lazy("restaurant_reservation:restaurant-list")
 
 
-class RestaurantDetailView(DetailView):
+class RestaurantDetailView(LoginRequiredMixin, DetailView):
     model = Restaurant
     fields = "__all__"
 
@@ -109,7 +109,7 @@ class ReservationDeleteView(LoginRequiredMixin, DeleteView):
         )
 
 
-class UsersListView(ListView):
+class UsersListView(LoginRequiredMixin, ListView):
     model = CustomUser
     fields = "__all__"
 
@@ -140,13 +140,13 @@ class UserDeleteView(LoginRequiredMixin, DeleteView):
 class TableCreateView(LoginRequiredMixin, CreateView):
     model = Table
     fields = "__all__"
-    success_url = reverse_lazy("restaurant_reservation:restaurant-list")
+    success_url = reverse_lazy("restaurant_reservation:table-list")
 
 
 class TableUpdateView(LoginRequiredMixin, UpdateView):
-    model = Restaurant
+    model = Table
     fields = "__all__"
-    success_url = reverse_lazy("restaurant_reservation:restaurant-list")
+    success_url = reverse_lazy("restaurant_reservation:table-list")
 
 
 class TableDeleteView(LoginRequiredMixin, DeleteView):

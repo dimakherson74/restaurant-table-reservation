@@ -15,7 +15,7 @@ from restaurant_reservation.views import (
     UsersCreateView,
     UsersDetailView,
     UserUpdateView,
-    UserDeleteView,
+    UserDeleteView, TableCreateView, TableUpdateView, TableDeleteView, TableListView,
 )
 
 urlpatterns = [
@@ -90,6 +90,10 @@ urlpatterns = [
         my_reservations,
         name="my-reservations",
     ),
+    path("table/create/", TableCreateView.as_view(), name="table-create", ),
+    path("table/<int:pk>/update/", TableUpdateView.as_view(), name="table-update", ),
+    path("table/<int:pk>/delete/", TableDeleteView.as_view(), name="table-delete", ),
+    path("tables/", TableListView.as_view(), name="table-list", ),
 ]
 
 
