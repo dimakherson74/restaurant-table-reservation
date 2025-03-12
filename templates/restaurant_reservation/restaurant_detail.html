@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>{{ restaurant.name }}</h1>
+  <hr>
+  <h3>{{ restaurant.description }}</h3>
+  <hr>
+  <h6>Address: {{ restaurant.address }}, Tel: {{ restaurant.phone_number }}</h6>
+  <p>Choose the table for reserve</p>
+  {% if restaurant.tables %}
+    <ul>
+      {% for table in restaurant.tables.all %}
+        <li>
+          <strong>
+            <a href="{% url 'restaurant_reservation:reservation-create' %}">
+              Table: {{ table.id }}
+            </a>
+
+          </strong>
+          Capacity: {{ table.capacity }}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No tables available.</p>
+  {% endif %}
+{% endblock %}

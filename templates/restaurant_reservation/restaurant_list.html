@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{#{% load crispy_forms_filters %}#}
+
+{% block content %}
+  <h1>
+    Restaurant List
+    {% if user.is_superuser %}
+      <a href="{% url 'restaurant_reservation:restaurant-create' %}" class="btn btn-primary link-to-page">
+        Create
+      </a>
+    {% endif %}
+  </h1>
+  <br>
+  {% if restaurant_list %}
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Cuisine type</th>
+        <th>Update</th>
+        <th>Delete</th>
+      </tr>
+
+      {% for restaurant in restaurant_list %}
+        <tr>
+          <td>
+              {{ restaurant.id }}
+          </td>
+          <td>
+            <a href="{% url 'restaurant_reservation:restaurant-detail' pk=restaurant.id %}">
+              {{ restaurant.name }}
+            </a>
+          </td>
+          <td>
+              {{ restaurant.cuisine_type }}
+          </td>
+          {% if user.is_superuser %}
+            <td>
+              <a href="{% url 'restaurant_reservation:restaurant-update' pk=restaurant.id %}">
+                Update
+              </a>
+            </td>
+            <td>
+              <a style="color: red"
+                 href="{% url 'restaurant_reservation:restaurant-delete' pk=restaurant.id %}">
+                Delete
+              </a>
+            </td>
+          {% endif %}
+        </tr>
+      {% endfor %}
+    </table>
+
+  {% else %}
+      <p>There are no manufacturers in the service.</p>
+  {% endif %}
+{% endblock %}
