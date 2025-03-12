@@ -147,3 +147,14 @@ class TableUpdateView(LoginRequiredMixin, UpdateView):
     model = Restaurant
     fields = "__all__"
     success_url = reverse_lazy("restaurant_reservation:restaurant-list")
+
+
+class TableDeleteView(LoginRequiredMixin, DeleteView):
+    model = Table
+    success_url = reverse_lazy("restaurant_reservation:table-list")
+
+
+class TableListView(LoginRequiredMixin, ListView):
+    model = Table
+    fields = "__all__"
+
