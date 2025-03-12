@@ -31,3 +31,24 @@ def index(request):
     }
 
     return render(request, "restaurant_reservation/index.html", context=context)
+
+
+class RestaurantListView(ListView):
+    model = Restaurant
+
+
+class RestaurantCreateView(CreateView):
+    model = Restaurant
+    fields = "__all__"
+    success_url = reverse_lazy("restaurant_reservation:restaurant-list")
+
+
+class RestaurantDetailView(DetailView):
+    model = Restaurant
+    fields = "__all__"
+
+
+class RestaurantUpdateView(LoginRequiredMixin, UpdateView):
+    model = Restaurant
+    fields = "__all__"
+    success_url = reverse_lazy("restaurant_reservation:restaurant-list")
