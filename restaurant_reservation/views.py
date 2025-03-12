@@ -11,7 +11,8 @@ from django.views.generic import (
     DeleteView,
 )
 
-# from .forms import ReservationForm, CustomerUserCreationForm, CustomerUserUpdateForm
+
+from .forms import ReservationForm, CustomerUserCreationForm, CustomerUserUpdateForm
 from .models import (
     Restaurant,
     Reservation,
