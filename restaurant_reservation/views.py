@@ -1,3 +1,33 @@
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
+from django.urls import reverse_lazy
+from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 
-# Create your views here.
+# from .forms import ReservationForm, CustomerUserCreationForm, CustomerUserUpdateForm
+from .models import (
+    Restaurant,
+    Reservation,
+    Table,
+    CustomUser,
+)
+
+
+@login_required
+def index(request):
+    """View function for the home page of the site."""
+
+    num_restaurant = Restaurant.objects.count()
+    num_reservation = Reservation.objects.count()
+    num_tables = Table.objects.count()
+    num_users = CustomUser.objects.count()
+
+    context = {
+        "num_restaurant": num_restaurant,
+        "num_reservation": num_reservation,
+        "num_tables": num_tables,
+        "num_users": num_users,
+    }
+
+    return render(request, "restaurant_reservation/index.html", context=context)
