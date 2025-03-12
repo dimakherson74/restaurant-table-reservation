@@ -2,5 +2,5 @@ from django.apps import AppConfig
 
 
 class RestaurantReservationConfig(AppConfig):
-    default_auto_field = 'django.db.models.BigAutoField'
-    name = 'restaurant_reservation'
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "restaurant_reservation"

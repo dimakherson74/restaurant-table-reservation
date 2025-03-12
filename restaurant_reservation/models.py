@@ -18,9 +18,7 @@ class Restaurant(models.Model):
     address = models.TextField()
     phone_number = models.CharField(max_length=15)
     admin = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-        related_name="restaurants"
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="restaurants"
     )
 
     def __str__(self):
@@ -29,9 +27,7 @@ class Restaurant(models.Model):
 
 class Table(models.Model):
     restaurant = models.ForeignKey(
-        Restaurant,
-        on_delete=models.CASCADE,
-        related_name="tables"
+        Restaurant, on_delete=models.CASCADE, related_name="tables"
     )
     table_number = models.PositiveIntegerField()
     capacity = models.PositiveIntegerField()
@@ -42,8 +38,12 @@ class Table(models.Model):
 
 
 class Reservation(models.Model):
-    guest = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="reservations")
-    table = models.ForeignKey(Table, on_delete=models.CASCADE, related_name="reservations")
+    guest = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="reservations"
+    )
+    table = models.ForeignKey(
+        Table, on_delete=models.CASCADE, related_name="reservations"
+    )
     date = models.DateField()
     time = models.TimeField()
     status = models.BooleanField(default=True)

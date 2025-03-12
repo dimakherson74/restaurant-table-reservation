@@ -3,7 +3,13 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
+from django.views.generic import (
+    ListView,
+    CreateView,
+    DetailView,
+    UpdateView,
+    DeleteView,
+)
 
 # from .forms import ReservationForm, CustomerUserCreationForm, CustomerUserUpdateForm
 from .models import (
@@ -63,7 +69,9 @@ def my_reservations(request: HttpRequest, pk: int) -> HttpResponse:
     user = CustomUser.objects.get(pk=pk)
     reservations = Reservation.objects.filter(guest_id=user)
     context = {"user": user, "reservations": reservations}
-    return render(request, "restaurant_reservation/my_reservations.html", context=context)
+    return render(
+        request, "restaurant_reservation/my_reservations.html", context=context
+    )
 
 
 class ReservationCreateView(LoginRequiredMixin, CreateView):
@@ -72,7 +80,10 @@ class ReservationCreateView(LoginRequiredMixin, CreateView):
     template_name = "restaurant_reservation/reservation_form.html"
 
     def get_success_url(self):
-        return reverse_lazy("restaurant_reservation:my-reservations", kwargs={'pk': self.request.user.pk})
+        return reverse_lazy(
+            "restaurant_reservation:my-reservations",
+            kwargs={"pk": self.request.user.pk},
+        )
 
 
 class ReservationUpdateView(LoginRequiredMixin, UpdateView):
@@ -81,7 +92,10 @@ class ReservationUpdateView(LoginRequiredMixin, UpdateView):
     template_name = "restaurant_reservation/reservation_form.html"
 
     def get_success_url(self):
-        return reverse_lazy("restaurant_reservation:my-reservations", kwargs={'pk': self.request.user.pk})
+        return reverse_lazy(
+            "restaurant_reservation:my-reservations",
+            kwargs={"pk": self.request.user.pk},
+        )
 
 
 class ReservationDeleteView(LoginRequiredMixin, DeleteView):
@@ -90,7 +104,7 @@ class ReservationDeleteView(LoginRequiredMixin, DeleteView):
     def get_success_url(self):
         return reverse_lazy(
             "restaurant_reservation:my-reservations",
-            kwargs={'pk': self.request.user.pk}
+            kwargs={"pk": self.request.user.pk},
         )
 
 
