@@ -13,8 +13,8 @@ python manage.py runserver
 
 ## Features
 
-Authentication functionality for CustomUser
-Only admin can add delete and edit tables restaurants users
+Authentication functionality for CustomUser.
+Only admin can add, delete, and edit tables, restaurants and users.
 
 ## Demo
 
