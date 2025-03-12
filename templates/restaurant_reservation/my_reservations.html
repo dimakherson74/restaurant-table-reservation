@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>My Reservations</h1>
+  <h2>
+    {{ user.username }}
+  </h2>
+  <h5>
+    <hr>
+    {% for reservation in reservations %}
+    	{{ reservation.table.restaurant }} 
+      {{ reservation.date }}
+      {{ reservation.time }}
+      <hr>
+      {{ reservation.status }}
+      <a href="{% url 'restaurant_reservation:reservation-update' pk=reservation.id %}">
+        Update
+      </a>
+      <a style="color: red"
+         href="{% url 'restaurant_reservation:reservation-delete' pk=reservation.id %}">
+        Delete
+      </a>
+      <hr>
+    {% endfor %}
+  </h5>
+{% endblock %}
