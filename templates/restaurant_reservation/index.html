@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %}
+   <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+      <h1 class="display-4 fw-normal">Welcome to Restaurant Reservation Platform!</h1>
+      <p class="fs-5 text-muted">You can reservation table in the restaurants of our country</p>
+    </div>
+
+  <main>
+    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">Restaurants</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">{{ num_restaurant }}</h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>Different cuisines</li>
+              <li>Pleasant atmosphere</li>
+              <li>High level of service</li>
+              <li>Price segment</li>
+            </ul>
+            <button type="button" class="w-100 btn btn-lg btn-outline-primary" onclick="window.location.href='{% url 'restaurant_reservation:restaurant-list' %}'">See all restaurants</button>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">Tables</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">{{ num_tables }}</h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>Comfort</li>
+              <li>Location</li>
+              <li>Capacity</li>
+              <li>Table setting</li>
+            </ul>
+            <button type="button" class="w-100 btn btn-lg btn-outline-primary" onclick="window.location.href='{% url 'restaurant_reservation:reservation-create'  %}'">Create reservation</button>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">Users</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">{{ num_users }}</h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>Users</li>
+              <li>From</li>
+              <li>Different</li>
+              <li>Countries</li>
+            </ul>
+            <button type="button" class="w-100 btn btn-lg btn-outline-primary" onclick="window.location.href='{% url 'restaurant_reservation:my-reservations' request.user.id %}'">My Reservations</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+{% endblock %}

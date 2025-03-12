@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>User List
+    <a href="{% url 'restaurant_reservation:user-create' %}" class="btn btn-primary link-to-page">
+      Create
+    </a>
+    </h1>
+
+    {% if customuser_list %}
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Phone number</th>
+        <th>Update</th>
+        <th>Delete</th>
+      </tr>
+    {% for user in customuser_list %}
+      <tr>
+        <td>{{ user.id }}</td>
+{#        <td><a href="{{ user.get_absolute_url }}">{{ user.username }} {% if user == driver %} (Me){% endif %}</a></td>#}
+        <td>{{ user.username }}</td>
+        <td>{{ user.first_name }}</td>
+        <td>{{ user.last_name }}</td>
+        <td>{{ user.phone_number }}</td>
+        <td>
+          <a href="{% url 'restaurant_reservation:user-update' pk=user.id %}">
+            Update
+          </a>
+        </td>
+        <td>
+          <a href="{% url 'restaurant_reservation:user-delete' pk=user.id %}">
+            Delete
+          </a>
+        </td>
+      </tr>
+    {% endfor %}
+
+    </table>
+    {% else %}
+      <p>There are no users in the service.</p>
+    {% endif %}
+{% endblock %}
