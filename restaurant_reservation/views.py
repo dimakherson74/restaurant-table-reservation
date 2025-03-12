@@ -57,3 +57,10 @@ class RestaurantUpdateView(LoginRequiredMixin, UpdateView):
 class RestaurantDeleteView(LoginRequiredMixin, DeleteView):
     model = Restaurant
     success_url = reverse_lazy("restaurant_reservation:restaurant-list")
+
+
+def my_reservations(request: HttpRequest, pk: int) -> HttpResponse:
+    user = CustomUser.objects.get(pk=pk)
+    reservations = Reservation.objects.filter(guest_id=user)
+    context = {"user": user, "reservations": reservations}
+    return render(request, "restaurant_reservation/my_reservations.html", context=context)
