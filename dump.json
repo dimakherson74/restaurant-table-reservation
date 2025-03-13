@@ -1,0 +1,108 @@
+[
+{
+    "model": "restaurant_reservation.customuser",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$GYNwZ9xgR6sSgNhQGmF16N$ehEq/LdA2/cN1hd4RSe7846/JWn8FHqpXdlAuX5829c=",
+        "last_login": "2025-03-12T21:14:54.744Z",
+        "is_superuser": true,
+        "username": "admin",
+        "first_name": "",
+        "last_name": "",
+        "email": "admin@admin.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2025-03-12T19:48:04.328Z",
+        "is_admin_restaurant": false,
+        "phone_number": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "restaurant_reservation.customuser",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$1MAxMIF8nw0nBEcfPRtRrz$Bc2e+J3uonGtc/7x9p+I/ge96iD84GM9nK7EGwIOwjk=",
+        "last_login": "2025-03-12T21:09:40.256Z",
+        "is_superuser": false,
+        "username": "User001",
+        "first_name": "Bob",
+        "last_name": "Liker",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-03-12T20:56:36.802Z",
+        "is_admin_restaurant": false,
+        "phone_number": "+1234567890",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "restaurant_reservation.restaurant",
+    "pk": 1,
+    "fields": {
+        "name": "La Piazza",
+        "description": "Italian restaurant with the best pasta in town.",
+        "cuisine_type": "Italian",
+        "address": "Forward str. 22",
+        "phone_number": "+1234567890",
+        "admin": 1
+    }
+},
+{
+    "model": "restaurant_reservation.restaurant",
+    "pk": 2,
+    "fields": {
+        "name": "Sakura",
+        "description": "Japanese restaurant with sushi and ramen.",
+        "cuisine_type": "Japanese",
+        "address": "Border str. 50",
+        "phone_number": "+9876543210",
+        "admin": 1
+    }
+},
+{
+    "model": "restaurant_reservation.table",
+    "pk": 1,
+    "fields": {
+        "restaurant": 2,
+        "table_number": 1,
+        "capacity": 4,
+        "available": true
+    }
+},
+{
+    "model": "restaurant_reservation.table",
+    "pk": 3,
+    "fields": {
+        "restaurant": 1,
+        "table_number": 2,
+        "capacity": 5,
+        "available": true
+    }
+},
+{
+    "model": "restaurant_reservation.reservation",
+    "pk": 1,
+    "fields": {
+        "guest": 1,
+        "table": 1,
+        "date": "2025-03-16",
+        "time": "12:00:00",
+        "status": true
+    }
+},
+{
+    "model": "restaurant_reservation.reservation",
+    "pk": 2,
+    "fields": {
+        "guest": 2,
+        "table": 1,
+        "date": "2025-03-16",
+        "time": "15:00:00",
+        "status": true
+    }
+}
+]
