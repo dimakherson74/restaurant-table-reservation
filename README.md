@@ -20,5 +20,7 @@ Only admin can add, delete, and edit tables, restaurants and users.
 
 ![Demo.png](Demo.png)
 
-
-https://dashboard.render.com/web/srv-cv9l2tofnakc73a8g8mg/events
+## Deployment
+![Visit the website] https://restaurant-table-reservation-1.onrender.com
+login: admin
+password: CL*+JMrQcC9E7Ak
